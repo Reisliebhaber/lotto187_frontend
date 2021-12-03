@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  /*form: FormGroup;*/
   username: String;
   name: String;
   email: String;
-  password: String;/**/
+  password: String;
 
-  constructor(
+  constructor(/*
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
-    ) {
+    private router: Router*/
+    ) {/*
     this.form = this.formBuilder.group({
       username: '',
       name: '',
       email: '',
       password: ''
-    })
-    /**/
+    })*/
+    
     this.username = "";
     this.name = "";
     this.email = "";
@@ -44,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   submitForm(){
     alert("good one uwu");
-    console.log(this.form.getRawValue);/*
+    /*console.log(this.form.getRawValue);
     this.http.post('http://localhost:8080/api/login', this.form.getRawValue(),{withCredentials: true})
     .subscribe(res => {
       console.log(res);// TODO remove
