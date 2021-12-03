@@ -1,0 +1,53 @@
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title"> Login </h1> 
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+
+        <!--login-->
+        <form (ngSubmit)="submitForm()" #loginForm="ngForm">
+            
+        <!--username  {{loginForm.valid}}-->  <!-- + normal name?-->
+        <div class="field">
+            <label class="label">Name</label>
+            <input
+            type="text" name="name" class="input" [(ngModel)]="name" #nameInput="ngModel" required>
+            <div class="help is-error" *ngIf="nameInput.invalid && nameInput.touched">
+                Your name is required.
+            </div>
+        </div>
+        
+        <!--username -->
+        <div class="field">
+            <label class="label">Username</label>
+            <input
+            type="text" name="username" class="input" [(ngModel)]="username" #usernameInput="ngModel" required>
+            <div class="help is-error" *ngIf="usernameInput.invalid && usernameInput.touched">
+                Your username is required.
+            </div>
+        </div>
+
+        <!--password-->
+        <div class="field">
+            <label class="label">Password</label>
+            <input
+            type="text" name="password" class="input" [(ngModel)]="password" #passwordInput="ngModel" required>
+            <div class="help is-error" *ngIf="passwordInput.invalid && passwordInput.touched">
+                Your password is required.
+            </div>
+        </div>
+
+        <!--submit button-->
+        <button type="submit" class="button is-large is-warning"
+        [disabled]="loginForm.invalid">
+            login
+        </button>
+        </form>
+    </div>
+</section>
