@@ -16,7 +16,13 @@
       </div>
       
       <div class="navbar-end">
-        <a class="navbar-item" [routerLink]="['auth/login']" routerLinkActive="router-link-active" >ReactiveLogin</a>
+        <a class="navbar-item" [routerLink]="['auth/login']" routerLinkActive="router-link-active" *ngIf="!jwt else logoutTemp" >
+          ReactiveLogin</a>
+          <ng-template #logoutTemp>
+            <div class="navbar-end">
+              <a class="navbar-item" [routerLink]="['auth/login']" (click)="logout()" routerLinkActive="router-link-active" >Logout</a>
+            </div>
+          </ng-template>
       </div>
     </div>
  </div>
