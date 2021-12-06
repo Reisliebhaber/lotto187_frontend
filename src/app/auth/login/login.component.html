@@ -1,0 +1,39 @@
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title"> Login </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <!--login-->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+            <!--username -->
+            <div class="field">
+                <label class="label" for="username">Username:</label>
+                <input type="text" id="username" class="input" formControlName="username">
+                <div class="help is-error">
+                    Your username is required.
+                </div>
+            </div>
+
+            <!--password-->
+            <div class="field">
+                <label class="label" for="password">Password:</label>
+                <input type="text" id="password" class="input" formControlName="password">
+                <div class="help is-error">
+                    Your password is required.
+                </div>
+            </div>
+
+            <!--submit button-->
+            <button type="submit" class="button is-large is-warning">
+                Login
+            </button>
+        </form>
+    </div>
+</section>
