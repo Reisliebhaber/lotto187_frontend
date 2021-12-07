@@ -11,12 +11,13 @@
         <!--login-->
         <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-
+{{loginForm.errors?.['required']}}
+<!--{{loginForm.touched || loginForm.dirty}}-->
             <!--username -->
             <div class="field">
                 <label class="label" for="username">Username:</label>
-                <input type="text" id="username" class="input" formControlName="username">
-                <div class="help is-error">
+                <input type="text" id="username" class="input" formControlName="username" placeholder="Username">
+                <div class="help is-error" *ngIf="!loginForm.valid">
                     Your username is required.
                 </div>
             </div>
@@ -24,14 +25,14 @@
             <!--password-->
             <div class="field">
                 <label class="label" for="password">Password:</label>
-                <input type="text" id="password" class="input" formControlName="password">
-                <div class="help is-error">
+                <input type="text" id="password" class="input" formControlName="password" placeholder="Password">
+                <div class="help is-error" *ngIf="!loginForm.valid">
                     Your password is required.
                 </div>
             </div>
 
             <!--submit button-->
-            <button type="submit" class="button is-large is-warning">
+            <button type="submit" class="button is-large is-warning" [disabled]="!loginForm.valid">
                 Login
             </button>
         </form>

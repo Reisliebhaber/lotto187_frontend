@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { LoginDto } from './../shared/login.dto';
 import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +11,8 @@ import { FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
-    username: [''],
-    password: [''],
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.compose([Validators.required, Validators.min(5)])),
   });
   constructor(private fb: FormBuilder,
     private _auth: AuthService,
