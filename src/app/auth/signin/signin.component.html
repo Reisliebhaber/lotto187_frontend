@@ -1,0 +1,48 @@
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title"> Sign-in </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <!--login-->
+        <form [formGroup]="loginForm" (ngSubmit)="signin()">
+
+<!--{{loginForm.touched || loginForm.dirty}}-->
+            <!-- name -->
+            <div class="field">
+                <label class="label" for="name">Name:</label>
+                <input type="text" id="name" class="input" formControlName="name" placeholder="Name">
+                <div class="help is-error" *ngIf="!loginForm.valid">
+                    Your name is required.
+                </div>
+            </div>
+
+            <!--username -->
+            <div class="field">
+                <label class="label" for="username">Username:</label>
+                <input type="text" id="username" class="input" formControlName="username" placeholder="Username">
+                <div class="help is-error" *ngIf="!loginForm.valid">
+                    Your username is required.
+                </div>
+            </div>
+
+            <!--password-->
+            <div class="field">
+                <label class="label" for="password">Password:</label>
+                <input type="text" id="password" class="input" formControlName="password" placeholder="Password">
+                <div class="help is-error" *ngIf="!loginForm.valid">
+                    Your password is required.
+                </div>
+            </div>
+
+            <!--submit button-->
+            <button type="submit" class="button is-large is-warning" [disabled]="!loginForm.valid">
+                Sign-in
+            </button>
+        </form>
+    </div>
+</section>

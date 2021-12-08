@@ -1,9 +1,9 @@
 import { environment } from './../../../environments/environment';
 import { TokenDto } from './token.dto';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { LoginDto } from './login.dto';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from 'src/app/interface/User';
 
 const jwtToken = 'jwtToken';
 const refreshToken = 'refreshToken';
@@ -13,12 +13,10 @@ const refreshToken = 'refreshToken';
 })
 export class AuthService {
 
+  signIn: boolean = false;
   isLoggedIn$ = new BehaviorSubject<string | null>(this.getToken());
   constructor(private _http: HttpClient) { }
 
-  loginn(loginDto: LoginDto): Observable<TokenDto> {
-    return this._http.post<TokenDto>(environment.api + '/api/login', loginDto);
-  }
   login(username: string, password: string): Observable<TokenDto> {
     const body = new HttpParams()
       .set('username', username)
@@ -43,6 +41,12 @@ export class AuthService {
     );
   }
 
+  signin(user: User): Observable<User> {
+    //alert(user.name + " is weirdchamp!!")
+    //return localStorage.
+    return this._http.post<User>(environment.api + '/api/register', user);
+  }
+
   getToken(): string | null {
     return localStorage.getItem(jwtToken);
   }
@@ -54,6 +58,14 @@ export class AuthService {
     localStorage.removeItem(jwtToken);
     localStorage.removeItem(refreshToken);
     this.isLoggedIn$.next(null);
+    this.signIn = false;
+  }
+
+  setIsSignIn(signIn: boolean): void {
+    this.signIn = signIn;
+  }
+  isSignIn(): boolean {
+    return this.signIn;
   }
 
 }

@@ -21,4 +21,8 @@ export class HeaderComponent implements OnInit {
   logout() {
     this._auth.logout();
   }
+
+  isSighIn(){
+    return this._auth.isSignIn();
+  }
 }

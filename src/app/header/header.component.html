@@ -14,8 +14,9 @@
       <div class="navbar-end">
         <a class="navbar-item" [routerLink]="['/login']" routerLinkActive="router-link-active" >TemplateLogin</a>
       </div>
-      
+
       <div class="navbar-end">
+        <a class="navbar-item" [routerLink]="['auth/signin']" routerLinkActive="router-link-active" *ngIf="!isSighIn()">Sign-in</a>
         <a class="navbar-item" [routerLink]="['auth/login']" routerLinkActive="router-link-active" *ngIf="!jwt else logoutTemp" >
           Login</a>
           <ng-template #logoutTemp>

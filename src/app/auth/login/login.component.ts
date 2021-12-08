@@ -27,10 +27,15 @@ export class LoginComponent implements OnInit {
       .subscribe(token => {
         if(token && token.access_token){
           this._router.navigateByUrl('');
+          this.setIsSignIn(true);
         }
         //console.log('Token: ', token);
       });
     //console.log('loginfo: ', this.loginForm.value)
+  }
+
+  setIsSignIn(signIn: boolean): void {
+    this._auth.setIsSignIn(signIn);
   }
 
 }
