@@ -1,4 +1,4 @@
-import { LoginComponent } from './login/login.component';
+import { UsertipsComponent } from './usertips/usertips.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,9 +8,9 @@ const routes: Routes = [
     path:'',
     component: HomeComponent
   },
-  {//TODO login entfernen?
-    path: 'login',
-    component: LoginComponent
+  {
+    path: 'usertips',
+    component: UsertipsComponent
   },
   {
     path: 'auth', loadChildren: () =>

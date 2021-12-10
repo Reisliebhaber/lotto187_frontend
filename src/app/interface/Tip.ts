@@ -4,7 +4,7 @@ export interface Tip {
     id: number | null;
     tips: string;
     superNumber: number;
-    tippingTime: Date;
+    tippingTime: Date | null;
     payout: number;
-    users: User[];
+    users: User[] | null;
 }

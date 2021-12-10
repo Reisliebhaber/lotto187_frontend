@@ -57,6 +57,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem(jwtToken);
     localStorage.removeItem(refreshToken);
+    localStorage.removeItem("user");
     this.isLoggedIn$.next(null);
     this.signIn = false;
   }
