@@ -11,25 +11,17 @@ export class TipService {
 
   constructor(private _http: HttpClient) { }
 
-  
-  getTips(): Observable<Tip> {
-    return this._http.get<Tip>(environment.api + '/api/tips')
-    .pipe(
-      tap(console.log),
-      catchError(this.handleError)
-    );
-  }/*
-    const body = new HttpParams()
-      .set('username', username)
-      .set('password', password);
 
-    return this._http.post<TokenDto>(environment.api + '/api/login',
-      body.toString(),
-      {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'application/x-www-form-urlencoded')
-      }*/
-  tips$ = <Observable<Tip[]>>this._http.get<Tip>(environment.api + '/api/tips')
+  getTips(): Observable<Tip> {
+    const currentUser = localStorage.getItem("user");
+    return this._http.post<Tip>(environment.api + '/api/tips', JSON.parse((currentUser) ? currentUser : ""))
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  }
+
+  tips$ = <Observable<Tip[]>>this._http.post<Tip>(environment.api + '/api/tips', localStorage.getItem("user"))
     .pipe(
       tap(console.log),
       catchError(this.handleError)

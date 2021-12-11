@@ -34,12 +34,16 @@ export class LoginComponent implements OnInit {
         //console.log('Token: ', token);
       });
     //console.log('loginfo: ', this.loginForm.get('username')?.value)
-    this.saveCurrentUser(this.loginForm.get('username')?.value);
   }
 
-  saveCurrentUser(username: string) {
-    //console.log(username);
-    this._userServ.getUser(username);
+  saveCurrentUser() {
+    const loginDto = this.loginForm.value as LoginDto;
+    this.saveUser(this.loginForm.get('username')?.value);/*
+    this.saveUser("lami");*/
+  }
+
+  saveUser(username: string) {
+    this._userServ.getUser(username).subscribe();
   }
 
   setIsSignIn(signIn: boolean): void {

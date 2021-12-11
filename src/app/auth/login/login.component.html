@@ -32,7 +32,7 @@
             </div>
 
             <!--submit button-->
-            <button type="submit" class="button is-large is-warning" [disabled]="!loginForm.valid">
+            <button type="submit" class="button is-large is-warning" [disabled]="!loginForm.valid" (click)=saveCurrentUser()>
                 Login
             </button>
         </form>

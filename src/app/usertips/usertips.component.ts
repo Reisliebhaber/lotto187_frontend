@@ -9,18 +9,23 @@ import { Tip } from '../interface/Tip';
   styleUrls: ['./usertips.component.css']
 })
 export class UsertipsComponent implements OnInit {
-  tips$: Observable<Tip[]> | undefined;
-  tests: Observable<Tip> | null;
+  tips: Tip[] | null | undefined;//Observable<Tip[]> | undefined;
+  tests: Tip[] | null;
   test: Tip | null;
 
   constructor(private tipService: TipService) {
     this.tests = null;
     this.test = null;
     this.getTips();
-   }
+  }
 
   ngOnInit(): void {
-    this.tips$ = this.tipService.tips$;/*this.tipService.getTips()
+    //this.tips$ = this.tipService.tips$;
+    this.tipService.getTips().subscribe(tips => {
+      console.log(tips);
+      this.tips?.push(tips);
+    });
+    /*this.tipService.getTips()
     .pipe(
       tap(console.log),
       map(response => return {response});
@@ -32,7 +37,7 @@ export class UsertipsComponent implements OnInit {
   }
 
   //TODO Liste tips mit den Tips des Users befüllen
-  tips: Tip[] = [
+  /*tips: Tip[] = [
     {
       id: 1,
       tips: "1,2,3,4,5,6",
@@ -49,16 +54,21 @@ export class UsertipsComponent implements OnInit {
       payout: 20.5,
       users: []
     }
-  ]
+  ]*/
 
-  tabKey:any = [];
-  tabValue:any = [];
-  getTips(){
-    this.tips.forEach((tip:Tip) =>{
-      this.tabKey = Object.keys(tip);
-      this.tabValue.push(Object.values(tip));
-    })
-    
-    
+  tabKey: any = [];
+  tabValue: any = [];
+  getTips() {
+    if (this.tips) {
+      this.tips.forEach((tip: Tip) => {
+        this.tabKey = Object.keys(tip);
+        this.tabValue.push(Object.values(tip));
+      })
+    } else {
+      console.log("No tips available.");
+      
+    }
+
+
   }
 }
